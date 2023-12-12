@@ -1,0 +1,8 @@
+DataBase:
+    Id  'Long' INT NOT NULL PRIMARY KEY,
+    Name 'String' NOT NULL VARCHAR(25),
+    last Name 'String' NOT NULL VARCHAR(30),
+    birth date 'Date?' DATE NOT NULL,
+    Phone number 'String'  VARCHAR(9) NOT NULL,
+    user Name 'String' VARCHAR(30) NOT NULL,
+    Password 'String' VARCHAR(40) NOT NULL,
