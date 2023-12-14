@@ -1,6 +1,8 @@
 package com.blazeland.simplelogin.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.blazeland.simplelogin.models.User;
 import java.util.List;
@@ -10,9 +12,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByUserName(String userName);
 
-    User findByUserEmailAndUserPassword(String userEmail, String userPassword);
+    @Query("SELECT u FROM User u WHERE u.userEmail = :userEmail AND u.userPassword = :userPassword")
+    User findUserByEmailAndPassword(@Param("userEmail") String userEmail,
+            @Param("userPassword") String userPassword);
 
-    List<User> findByUserPhoneNumber(String userPhoneNumber);
+    User findByUserPhoneNumber(String userPhoneNumber);
 
-    List<User> findByUserEmail(String userEmail);
+    User findByUserEmail(String userEmail);
+
+    @Query("SELECT u FROM User u WHERE u.userPassword = :userPassword")
+    User findByUserPassword(@Param("userPassword") String userPassword);
 }

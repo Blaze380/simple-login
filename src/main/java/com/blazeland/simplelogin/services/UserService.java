@@ -3,15 +3,17 @@ package com.blazeland.simplelogin.services;
 import java.util.List;
 
 import com.blazeland.simplelogin.models.User;
+import com.blazeland.simplelogin.models.verification.UserGetStatus;
+import com.blazeland.simplelogin.models.verification.UserPostStatus;
 
 public interface UserService {
-    boolean createUser(User user);
+    UserPostStatus createUser(User user);
 
-    boolean updateUser(User user);
+    UserPostStatus updateUser(User user);
 
-    boolean deleteUser(String userEmail, String userPassword);
+    UserGetStatus deleteUser(String userEmail, String userPassword);
 
-    User getUser(String userEmail, String userPassword);
+    UserGetStatus getUser(String userEmail, String userPassword);
 
     List<User> getAllUsers();
 }

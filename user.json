@@ -1,8 +1,34 @@
-{
-    "userId": null,
-    "userName": "",
-    "userBirthDate": "",
-    "userPhoneNumber": "",
-    "userEmail": "",
-    "userPassword": ""
-}
+[
+    {
+        "userId": null,
+        "userName": "",
+        "userBirthDate": "",
+        "userPhoneNumber": "",
+        "userEmail": "",
+        "userPassword": ""
+    },
+    {
+        "userId": null,
+        "userName": "Fernando",
+        "userBirthDate": "2007-04-24",
+        "userPhoneNumber": "878736123",
+        "userEmail": "fernandoorlandobanda@gmail.com",
+        "userPassword": "dark"
+    },
+    {
+        "userId": null,
+        "userName": "joao",
+        "userBirthDate": "2001-01-20",
+        "userPhoneNumber": "857483995",
+        "userEmail": "joaomugabe@gmail.com",
+        "userPassword": "madumane"
+    },
+    {
+        "userId": null,
+        "userName": "Mia",
+        "userBirthDate": "2007-05-16",
+        "userPhoneNumber": "853195222",
+        "userEmail": "miakhalifa@gmail.com",
+        "userPassword": "michelle"
+    }
+]

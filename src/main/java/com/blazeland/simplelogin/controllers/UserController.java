@@ -6,10 +6,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blazeland.simplelogin.models.User;
 import com.blazeland.simplelogin.models.UserLogin;
+import com.blazeland.simplelogin.models.verification.UserGetStatus;
+import com.blazeland.simplelogin.models.verification.UserPostStatus;
 import com.blazeland.simplelogin.services.UserService;
 
 import lombok.AllArgsConstructor;
@@ -21,26 +24,26 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/post")
-    public boolean createUser(@RequestBody User user) {
-        boolean isUserCreated = userService.createUser(user);
-        return isUserCreated;
+    public UserPostStatus createUser(@RequestBody User user) {
+        return userService.createUser(user);
     }
 
     @PutMapping("/update")
-    public boolean updateUser(@RequestBody User user) {
-        boolean isUserUpdated = userService.updateUser(user);
-        return isUserUpdated;
+    public UserPostStatus updateUser(@RequestBody User user) {
+        return userService.updateUser(user);
     }
 
     @GetMapping("/get")
-    public User getUser(@RequestBody UserLogin userLogin) {
-        return userService.getUser(userLogin.getUserEmail(), userLogin.getUserPassword());
+    public UserGetStatus getUser(@RequestParam("userEmail") String userEmail,
+            @RequestParam("userPassword") String userPassword) {
+        return userService.getUser(userEmail,
+                userPassword);
+
     }
 
     @DeleteMapping("/delete")
-    public boolean deleteUser(@RequestBody UserLogin userLogin) {
-        boolean isUserDeleted = userService.deleteUser(userLogin.getUserEmail(), userLogin.getUserPassword());
-        return isUserDeleted;
+    public UserGetStatus deleteUser(@RequestBody UserLogin userLogin) {
+        return userService.deleteUser(userLogin.getUserEmail(), userLogin.getUserPassword());
     }
 
 }
