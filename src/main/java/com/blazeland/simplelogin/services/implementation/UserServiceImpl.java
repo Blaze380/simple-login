@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
         var user = userRepository.findUserByEmailAndPassword(userEmail, userPassword);
         userGetStatus.setMethod("GET");
         userGetStatus.setUser(null);
-        if (user.equals(null)) {
+        if (user == null) {
             userGetStatus.setSuccess(false);
             userGetStatus.setGet(false);
         } else {

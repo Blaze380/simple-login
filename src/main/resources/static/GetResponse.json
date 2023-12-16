@@ -1,0 +1,14 @@
+{
+    "user": {
+        "userId": 1,
+        "userName": "Mia",
+        "userBirthDate": "2007-05-16",
+        "userPhoneNumber": "853195222",
+        "userEmail": "miakhalifa@gmail.com",
+        "userPassword": "michelle"
+    },
+    "method": "GET",
+    "deleted": false,
+    "get": true,
+    "success": true
+}

@@ -1,5 +1,6 @@
 package com.blazeland.simplelogin.controllers;
 
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,8 @@ import com.blazeland.simplelogin.models.verification.UserGetStatus;
 import com.blazeland.simplelogin.models.verification.UserPostStatus;
 import com.blazeland.simplelogin.services.UserService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -31,6 +34,19 @@ public class UserController {
     @PutMapping("/update")
     public UserPostStatus updateUser(@RequestBody User user) {
         return userService.updateUser(user);
+    }
+
+    @GetMapping("/setcookie")
+    public String setCookie(HttpServletResponse response) {
+        Cookie cookie = new Cookie("user", "20");
+        cookie.setMaxAge(24 * 120 * 10);
+        response.addCookie(cookie);
+        return "AAAAAAAAAAAAAAAAAAAAAAAA";
+    }
+
+    @GetMapping("/getcookie")
+    public String getCookie(@CookieValue(name = "user", defaultValue = "arroz com feijao") String cookieValue) {
+        return "valor do cookie: " + cookieValue;
     }
 
     @GetMapping("/get")
