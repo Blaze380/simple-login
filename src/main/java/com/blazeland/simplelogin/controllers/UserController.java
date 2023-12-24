@@ -14,6 +14,7 @@ import com.blazeland.simplelogin.models.User;
 import com.blazeland.simplelogin.models.UserLogin;
 import com.blazeland.simplelogin.models.verification.UserGetStatus;
 import com.blazeland.simplelogin.models.verification.UserPostStatus;
+import com.blazeland.simplelogin.services.CookieService;
 import com.blazeland.simplelogin.services.UserService;
 
 import jakarta.servlet.http.Cookie;
@@ -25,6 +26,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/user")
 public class UserController {
     UserService userService;
+    CookieService cookieService;
 
     @PostMapping("/post")
     public UserPostStatus createUser(@RequestBody User user) {
@@ -38,14 +40,15 @@ public class UserController {
 
     @GetMapping("/setcookie")
     public String setCookie(HttpServletResponse response) {
-        Cookie cookie = new Cookie("user", "20");
-        cookie.setMaxAge(24 * 120 * 10);
+        Cookie cookie = new Cookie("idname", "dopaminemachine");
+        cookie.setMaxAge(20000);
         response.addCookie(cookie);
-        return "AAAAAAAAAAAAAAAAAAAAAAAA";
+        cookieService.setCookie(response, "userId", "2023", 12 * 402);
+        return "Success!";
     }
 
     @GetMapping("/getcookie")
-    public String getCookie(@CookieValue(name = "user", defaultValue = "arroz com feijao") String cookieValue) {
+    public String getCookie(@CookieValue(name = "userId", defaultValue = "Cookie not found") String cookieValue) {
         return "valor do cookie: " + cookieValue;
     }
 

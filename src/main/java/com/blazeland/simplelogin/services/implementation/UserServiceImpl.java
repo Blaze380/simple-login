@@ -38,19 +38,13 @@ public class UserServiceImpl implements UserService {
         return userPostStatus;
     }
 
+    // TODO create delete object
     @Override
     public UserGetStatus deleteUser(String userEmail, String userPassword) {
         var userId = userRepository.findUserByEmailAndPassword(userEmail, userPassword).getUserId();
-        userGetStatus.setMethod("DELETE");
-        userGetStatus.setUser(null);
-        if (userId.equals(null)) {
-            userGetStatus.setSuccess(false);
-            userGetStatus.setDeleted(true);
-
+        if (userId == null) {
         } else {
             userRepository.deleteById(userId);
-            userGetStatus.setSuccess(true);
-            userGetStatus.setDeleted(false);
         }
         return userGetStatus;
     }
@@ -58,15 +52,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserGetStatus getUser(String userEmail, String userPassword) {
         var user = userRepository.findUserByEmailAndPassword(userEmail, userPassword);
-        userGetStatus.setMethod("GET");
-        userGetStatus.setUser(null);
         if (user == null) {
-            userGetStatus.setSuccess(false);
-            userGetStatus.setGet(false);
+            userGetStatus.setUserNameOrPasswordCorrect(false);
         } else {
-            userGetStatus.setUser(user);
-            userGetStatus.setSuccess(true);
-            userGetStatus.setGet(true);
+            userGetStatus.setUserNameOrPasswordCorrect(true);
         }
         return userGetStatus;
 
